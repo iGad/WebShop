@@ -2,9 +2,13 @@
 =======
 Одегов Павел
 Выбранный стэк технологий:
+
 Windows
+
 IIS
+
 MS SQL Server
+
 ASP.NET
 
 

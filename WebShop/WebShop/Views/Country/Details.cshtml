@@ -1,0 +1,23 @@
+﻿@model WebShop.Country
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Подробности</h2>
+
+<fieldset>
+    <legend>Страна</legend>
+
+    <div class="display-label">
+         <!--@Html.DisplayNameFor(model => model.name)-->
+        <label>Название</label>
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.name)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Редактировать", "Edit", new { id=Model.id }) |
+    @Html.ActionLink("Назад к списку", "Index")
+</p>

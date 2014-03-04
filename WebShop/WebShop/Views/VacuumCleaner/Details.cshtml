@@ -1,0 +1,153 @@
+﻿@model WebShop.VacuumCleaner
+
+@{
+    ViewBag.Title = "Подробности";
+}
+
+<h2>Подробности о пылесосе</h2>
+
+<fieldset>
+    <legend>Пылесос</legend>
+
+    <div class="display-label">
+         <label>Модель:</label>
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.model)
+    </div>
+
+    <div class="display-label">
+          <label>Производитель:</label>
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Consumers.name)
+    </div>
+
+    <div class="display-label">
+          <label>Тип пылесоса:</label>
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.type)
+    </div>
+
+    <div class="display-label">
+          <label>Изображение</label>
+    </div>
+    <div class="display-field">
+        <!--if (Model.image != null)
+        {
+            WebImage wi = new WebImage("./Images/"+Model.image);
+            wi.Write();
+        }
+        else
+        {
+            WebImage wi = new WebImage("./Images/no_image.png");
+            wi.Write();
+        }-->
+    </div>
+
+    <div class="display-label">
+          <label>Тип уборки:</label>
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.harvestingType)
+    </div>
+
+    <div class="display-label">
+         <label>Тип питания:</label>
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.powerType)
+    </div>
+
+    <div class="display-label">
+         <label>Потребляемая мощность:</label>
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.consumePower)
+    </div>
+
+    <div class="display-label">
+          <label>Мощность всасывания:</label>
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.suckPower)
+    </div>
+
+    <div class="display-label">
+          <label>Шум:</label>
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.noise)
+    </div>
+
+    <div class="display-label">
+          <label>Тип контенера для сборки пыли:</label>
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.stackType)
+    </div>
+    @if (Model.cordLength != null)
+    {
+        if (Model.cordLength > 0)
+        {
+            <div class="display-label">
+                  <label>Длина провода:</label>
+            </div>
+            <div class="display-field">
+                @Html.DisplayFor(model => model.cordLength)
+            </div>
+        }
+    }
+    <div class="display-label">
+          <label>Количество насадок:</label>
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.capCount)
+    </div>
+
+    <div class="display-label">
+          <label>Вес:</label>
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.weigth)
+    </div>
+
+    <div class="display-label">
+          <label>Штрих-код:</label>
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.barcode)
+    </div>
+    @if (Model.battery != null)
+    {
+        if (Model.battery > 0)
+        {
+            <div class="display-label">
+                  <label>Емкость баттареи:</label>
+            </div>
+            <div class="display-field">
+                @Html.DisplayFor(model => model.battery)
+            </div>
+        }
+    }
+    <div class="display-label">
+          <label>Описание:</label>
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.description)
+    </div>
+
+    <div class="display-label">
+         <label>Цена:</label>
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.price)
+    </div>
+</fieldset>
+<p>
+    @if(Request.IsAuthenticated){
+        Html.ActionLink("Редактировать", "Edit", new { id = Model.id });       
+        }
+    @Html.ActionLink("Назад", "Index")
+</p>

@@ -1,0 +1,134 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Data.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="DataStoreContainer">
+    <EntitySet Name="Consumers" EntityType="Data.Store.Consumers" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Countries" EntityType="Data.Store.Countries" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Sales" EntityType="Data.Store.Sales" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Users" EntityType="Data.Store.Users" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Vacuum_cleaners" EntityType="Data.Store.Vacuum_cleaners" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="FK_Consumers_Countries" Association="Data.Store.FK_Consumers_Countries">
+      <End Role="Countries" EntitySet="Countries" />
+      <End Role="Consumers" EntitySet="Consumers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Sales_Users" Association="Data.Store.FK_Sales_Users">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Sales" EntitySet="Sales" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Sales_Vacuum_cleaners" Association="Data.Store.FK_Sales_Vacuum_cleaners">
+      <End Role="Vacuum_cleaners" EntitySet="Vacuum_cleaners" />
+      <End Role="Sales" EntitySet="Sales" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Vacuum_cleaners_Consumers" Association="Data.Store.FK_Vacuum_cleaners_Consumers">
+      <End Role="Consumers" EntitySet="Consumers" />
+      <End Role="Vacuum_cleaners" EntitySet="Vacuum_cleaners" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Consumers">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="countryId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Countries">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="nvarchar" Nullable="false" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Sales">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="cleanerId" Type="int" Nullable="false" />
+    <Property Name="userId" Type="int" Nullable="false" />
+    <Property Name="price" Type="money" Nullable="false" />
+    <Property Name="date" Type="date" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Users">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="login" Type="nvarchar" Nullable="false" MaxLength="30" />
+    <Property Name="pass" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="type" Type="int" Nullable="false" />
+    <Property Name="buyCount" Type="int" Nullable="false" />
+    <Property Name="buySumm" Type="float" Nullable="false" />
+    <Property Name="creditCard" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Vacuum_cleaners">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="model" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="consumerId" Type="int" Nullable="false" />
+    <Property Name="type" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="harvestingType" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="powerType" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="consumePower" Type="int" Nullable="false" />
+    <Property Name="suckPower" Type="int" Nullable="false" />
+    <Property Name="noise" Type="int" Nullable="false" />
+    <Property Name="stackType" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="cordLength" Type="float" />
+    <Property Name="capCount" Type="int" />
+    <Property Name="weigth" Type="float" />
+    <Property Name="barcode" Type="nvarchar" MaxLength="50" />
+    <Property Name="battery" Type="int" />
+    <Property Name="description" Type="nvarchar(max)" />
+    <Property Name="image" Type="image" />
+    <Property Name="price" Type="money" />
+  </EntityType>
+  <Association Name="FK_Consumers_Countries">
+    <End Role="Countries" Type="Data.Store.Countries" Multiplicity="1" />
+    <End Role="Consumers" Type="Data.Store.Consumers" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Countries">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Consumers">
+        <PropertyRef Name="countryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Sales_Users">
+    <End Role="Users" Type="Data.Store.Users" Multiplicity="1" />
+    <End Role="Sales" Type="Data.Store.Sales" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Sales">
+        <PropertyRef Name="userId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Sales_Vacuum_cleaners">
+    <End Role="Vacuum_cleaners" Type="Data.Store.Vacuum_cleaners" Multiplicity="1" />
+    <End Role="Sales" Type="Data.Store.Sales" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Vacuum_cleaners">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Sales">
+        <PropertyRef Name="cleanerId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Vacuum_cleaners_Consumers">
+    <End Role="Consumers" Type="Data.Store.Consumers" Multiplicity="1" />
+    <End Role="Vacuum_cleaners" Type="Data.Store.Vacuum_cleaners" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Consumers">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Vacuum_cleaners">
+        <PropertyRef Name="consumerId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

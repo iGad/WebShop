@@ -1,0 +1,47 @@
+﻿@{
+    ViewBag.Title = "Добро пожаловать";
+    if (ViewBag.PrevPage == null){
+        ViewBag.PrevPage = Url;}else{
+    ViewBag.PrevPage = ViewBag.CurrentPage;}
+    ViewBag.CurrentPage = Url;
+    ViewBag.Message = "Приветствуем Вас в нашем интернет магазине WebShop. Здесь вы найдете самые современные пылесосы от самых крупных производителей в мире.";
+}
+@section featured {
+    <section class="featured">
+        <div class="content-wrapper">
+            <hgroup class="title">
+                <h1>@ViewBag.Title!</h1><br />
+                <h2>@ViewBag.Message</h2>
+            </hgroup>
+           <!-- <p>
+                Для получения дополнительных сведений о ASP.NET MVC посетите веб-сайт 
+                <a href="http://asp.net/mvc" title="ASP.NET MVC Website">http://asp.net/mvc</a>.
+                На странице представлены <mark>видеоматериалы, учебники и образцы кода</mark> , позволяющие лучшим образом использовать ASP.NET MVC.
+                По всем вопросам об ASP.NET MVC обращайтесь на
+                <a href="http://forums.asp.net/1146.aspx/1?MVC" title="ASP.NET MVC Forum">наши форумы</a>.
+            </p>-->
+        </div>
+    </section>
+}
+<h3>Новые поступления этой недели:</h3>
+<ol class="round">
+    <li class="one">
+        <h5>бла-бла-бла</h5>
+        <br />
+        <br />
+        
+    </li>
+
+    <li class="two">
+        <h5>бла-блаб-блаб-бал</h5>
+        <br />
+        <br />
+    </li>
+
+    <li class="three">
+        <h5>блааааа</h5>
+        <br />
+        <br />
+        
+    </li>
+</ol>

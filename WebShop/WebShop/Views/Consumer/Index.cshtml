@@ -1,0 +1,46 @@
+﻿@model IEnumerable<WebShop.Consumer>
+
+@{
+    ViewBag.Title = "Index";
+    ViewBag.PrevPage = ViewBag.CurrentPage;
+    ViewBag.CurrentPage = Url;
+}
+@if(Request.IsAuthenticated){
+<h2>Просмотр всех производителей</h2>
+
+<p>
+    @Html.ActionLink("Добавить", "Create")
+</p>
+<table>
+    <tr>
+        <th>
+            <!--@Html.DisplayNameFor(model => model.name)-->
+            <label>Название</label>
+        </th>
+        <th>
+            <!--@Html.DisplayNameFor(model => model.Countries.name)-->
+            <label>Страна</label>
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Countries.name)
+        </td>
+        <td>
+            @Html.ActionLink("Редактировать", "Edit", new { id=item.id }) |
+            <!--@Html.ActionLink("Details", "Details", new { id=item.id }) |-->
+            @Html.ActionLink("Удалить", "Delete", new { id=item.id })
+        </td>
+    </tr>
+}
+
+</table>
+}else{
+<h1>404 Not found</h1>
+}

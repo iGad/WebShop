@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="191f8cc647f44f7294193e7551d8cbb0" Name="Диаграмма1" ZoomLevel="106" >
+        <EntityTypeShape EntityType="Data.Consumer" Width="1.5" PointX="9.7788785164146113" PointY="18.664398276556469" />
+        <EntityTypeShape EntityType="Data.Country" Width="1.5" PointX="6.4131177917183919" PointY="10.4923241932375" />
+        <EntityTypeShape EntityType="Data.Sale" Width="1.5" PointX="11.202600957454463" PointY="0.14611178643354764" />
+        <EntityTypeShape EntityType="Data.User" Width="1.5" PointX="1.217582110882542" PointY="15.927400536801386" />
+        <EntityTypeShape EntityType="Data.VacuumCleaner" Width="1.5" PointX="5.2084305459672731" PointY="12.745321056221295" />
+        <AssociationConnector Association="Data.FK_Consumers_Countries" />
+        <AssociationConnector Association="Data.FK_Vacuum_cleaners_Consumers" />
+        <AssociationConnector Association="Data.FK_Sales_Users" />
+        <AssociationConnector Association="Data.FK_Sales_Vacuum_cleaners" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

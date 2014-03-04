@@ -1,0 +1,155 @@
+﻿@model WebShop.VacuumCleaner
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Create</h2>
+
+@using (Html.BeginForm()) {
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>VacuumCleaner</legend>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.model)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.model)
+            @Html.ValidationMessageFor(model => model.model)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.consumerId, "Consumers")
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("consumerId", String.Empty)
+            @Html.ValidationMessageFor(model => model.consumerId)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.type)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.type)
+            @Html.ValidationMessageFor(model => model.type)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.harvestingType)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.harvestingType)
+            @Html.ValidationMessageFor(model => model.harvestingType)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.powerType)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.powerType)
+            @Html.ValidationMessageFor(model => model.powerType)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.consumePower)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.consumePower)
+            @Html.ValidationMessageFor(model => model.consumePower)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.suckPower)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.suckPower)
+            @Html.ValidationMessageFor(model => model.suckPower)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.noise)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.noise)
+            @Html.ValidationMessageFor(model => model.noise)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.stackType)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.stackType)
+            @Html.ValidationMessageFor(model => model.stackType)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.cordLength)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.cordLength)
+            @Html.ValidationMessageFor(model => model.cordLength)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.capCount)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.capCount)
+            @Html.ValidationMessageFor(model => model.capCount)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.weigth)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.weigth)
+            @Html.ValidationMessageFor(model => model.weigth)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.barcode)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.barcode)
+            @Html.ValidationMessageFor(model => model.barcode)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.battery)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.battery)
+            @Html.ValidationMessageFor(model => model.battery)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.description)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.description)
+            @Html.ValidationMessageFor(model => model.description)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.price)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.price)
+            @Html.ValidationMessageFor(model => model.price)
+        </div>
+
+        <p>
+            <input type="submit" value="Create" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

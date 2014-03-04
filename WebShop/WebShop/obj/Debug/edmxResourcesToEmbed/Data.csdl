@@ -1,0 +1,142 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="Data" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" annotation:UseStrongSpatialTypes="false">
+  <EntityContainer Name="DataContainer" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Consumers" EntityType="Data.Consumer" />
+    <EntitySet Name="Countries" EntityType="Data.Country" />
+    <EntitySet Name="Sales" EntityType="Data.Sale" />
+    <EntitySet Name="Users" EntityType="Data.User" />
+    <EntitySet Name="Vacuum_cleaners" EntityType="Data.VacuumCleaner" />
+    <AssociationSet Name="FK_Consumers_Countries" Association="Data.FK_Consumers_Countries">
+      <End Role="Countries" EntitySet="Countries" />
+      <End Role="Consumers" EntitySet="Consumers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Vacuum_cleaners_Consumers" Association="Data.FK_Vacuum_cleaners_Consumers">
+      <End Role="Consumers" EntitySet="Consumers" />
+      <End Role="Vacuum_cleaners" EntitySet="Vacuum_cleaners" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Sales_Users" Association="Data.FK_Sales_Users">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Sales" EntitySet="Sales" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Sales_Vacuum_cleaners" Association="Data.FK_Sales_Vacuum_cleaners">
+      <End Role="Vacuum_cleaners" EntitySet="Vacuum_cleaners" />
+      <End Role="Sales" EntitySet="Sales" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Consumer">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="name" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="Int32" Name="countryId" Nullable="false" />
+    <NavigationProperty Name="Countries" Relationship="Data.FK_Consumers_Countries" FromRole="Consumers" ToRole="Countries" />
+    <NavigationProperty Name="Vacuum_cleaners" Relationship="Data.FK_Vacuum_cleaners_Consumers" FromRole="Consumers" ToRole="Vacuum_cleaners" />
+  </EntityType>
+  <EntityType Name="Country">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="name" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Consumers" Relationship="Data.FK_Consumers_Countries" FromRole="Countries" ToRole="Consumers" />
+  </EntityType>
+  <EntityType Name="Sale">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="Int32" Name="cleanerId" Nullable="false" />
+    <Property Type="Int32" Name="userId" Nullable="false" />
+    <Property Type="Decimal" Name="price" Nullable="false" Precision="19" Scale="4" />
+    <Property Type="DateTime" Name="date" Nullable="false" Precision="0" />
+    <NavigationProperty Name="Users" Relationship="Data.FK_Sales_Users" FromRole="Sales" ToRole="Users" />
+    <NavigationProperty Name="Vacuum_cleaners" Relationship="Data.FK_Sales_Vacuum_cleaners" FromRole="Sales" ToRole="Vacuum_cleaners" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="login" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="pass" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="Int32" Name="type" Nullable="false" />
+    <Property Type="Int32" Name="buyCount" Nullable="false" />
+    <Property Type="Decimal" Name="buySumm" Nullable="false" />
+    <Property Type="String" Name="creditCard" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Sales" Relationship="Data.FK_Sales_Users" FromRole="Users" ToRole="Sales" />
+  </EntityType>
+  <EntityType Name="VacuumCleaner">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="model" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="Int32" Name="consumerId" Nullable="false" />
+    <Property Type="String" Name="type" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="harvestingType" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="powerType" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="Int32" Name="consumePower" Nullable="false" />
+    <Property Type="Int32" Name="suckPower" Nullable="false" />
+    <Property Type="Int32" Name="noise" Nullable="false" />
+    <Property Type="String" Name="stackType" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="Double" Name="cordLength" />
+    <Property Type="Int32" Name="capCount" />
+    <Property Type="Double" Name="weigth" />
+    <Property Type="String" Name="barcode" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="Int32" Name="battery" />
+    <Property Type="String" Name="description" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Type="Binary" Name="image" MaxLength="Max" FixedLength="false" />
+    <Property Type="Decimal" Name="price" Precision="19" Scale="4" />
+    <NavigationProperty Name="Consumers" Relationship="Data.FK_Vacuum_cleaners_Consumers" FromRole="Vacuum_cleaners" ToRole="Consumers" />
+    <NavigationProperty Name="Sales" Relationship="Data.FK_Sales_Vacuum_cleaners" FromRole="Vacuum_cleaners" ToRole="Sales" />
+  </EntityType>
+  <Association Name="FK_Consumers_Countries">
+    <End Type="Data.Country" Role="Countries" Multiplicity="1" />
+    <End Type="Data.Consumer" Role="Consumers" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Countries">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Consumers">
+        <PropertyRef Name="countryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Vacuum_cleaners_Consumers">
+    <End Type="Data.Consumer" Role="Consumers" Multiplicity="1" />
+    <End Type="Data.VacuumCleaner" Role="Vacuum_cleaners" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Consumers">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Vacuum_cleaners">
+        <PropertyRef Name="consumerId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Sales_Users">
+    <End Type="Data.User" Role="Users" Multiplicity="1" />
+    <End Type="Data.Sale" Role="Sales" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Sales">
+        <PropertyRef Name="userId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Sales_Vacuum_cleaners">
+    <End Type="Data.VacuumCleaner" Role="Vacuum_cleaners" Multiplicity="1" />
+    <End Type="Data.Sale" Role="Sales" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Vacuum_cleaners">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Sales">
+        <PropertyRef Name="cleanerId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

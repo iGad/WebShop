@@ -1,0 +1,176 @@
+﻿@model WebShop.VacuumCleaner
+
+@{
+    ViewBag.Title = "Редактирование";
+}
+
+<h2>Редактирование</h2>
+
+@using (Html.BeginForm("Edit","VacuumCleaner",FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Инфо о пылесосе</legend>
+
+        @Html.HiddenFor(model => model.id)
+
+        <div class="editor-label">
+            <label>Название модели:</label>
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.model)
+            @Html.ValidationMessageFor(model => model.model)
+        </div>
+
+        <div class="editor-label">
+            <label>Производитель:</label>
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("consumerId")
+            @Html.ValidationMessageFor(model => model.consumerId)
+        </div>
+
+       <div class="editor-label">Изображение:</div>
+          <div class="editor-field">
+            @if (Model.image == null) {
+                Html.Label("Отсутствует");
+            }
+            else {
+              <img width="150" height="150" src="@Url.Action("GetImage", "VacuumCleaner", new { Model.id })" />
+            }
+            <div>
+              <input type="file" name="image" /></div>
+          </div>
+        
+
+        <div class="editor-label">
+            <label>Тип пылесоса:</label>
+        </div>
+        <div class="editor-field">
+            <!--Html.EditorFor(model => model.type)-->
+            @Html.DropDownListFor(model=>model.type, new SelectList(new List<string>(){"Обычный","Автомобильный","Робот"}))
+            @Html.ValidationMessageFor(model => model.type)
+        </div>
+
+        <div class="editor-label">
+            <label>Тип уборки:</label>
+        </div>
+        <div class="editor-field">
+            <!--Html.EditorFor(model => model.harvestingType)-->
+            @Html.DropDownListFor(model=>model.harvestingType, new SelectList(new List<string>(){"Сухая","Влажная","Сухая и влажная"}))
+            @Html.ValidationMessageFor(model => model.harvestingType)
+        </div>
+
+        <div class="editor-label">
+            <label>Тип питания:</label>
+        </div>
+        <div class="editor-field">
+            <!--Html.EditorFor(model => model.powerType)-->
+            @Html.DropDownListFor(model=>model.powerType, new SelectList(new List<string>(){"От сети","От прикуривателя","От батареи"}))
+            @Html.ValidationMessageFor(model => model.powerType)
+        </div>
+
+        <div class="editor-label">
+            <label>Потребляемая мощность:</label>
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.consumePower)
+            @Html.ValidationMessageFor(model => model.consumePower)
+        </div>
+
+        <div class="editor-label">
+            <label>Мощность всасывания:</label>
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.suckPower)
+            @Html.ValidationMessageFor(model => model.suckPower)
+        </div>
+
+        <div class="editor-label">
+            <label>Шум:</label>
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.noise)
+            @Html.ValidationMessageFor(model => model.noise)
+        </div>
+
+        <div class="editor-label">
+            <label>Тип контейнера для сбора пыли:</label>
+        </div>
+        <div class="editor-field">
+            <!--Html.EditorFor(model => model.stackType)-->
+            @Html.DropDownListFor(model=>model.stackType,new SelectList(new List<string>(){"Мешок","Контейнер"}))
+            <!--Html.DropDownList("typeList", new SelectList(new List<string>(){"Мешок","Контейнер"}))-->
+            @Html.ValidationMessageFor(model => model.stackType)
+        </div>
+
+        <div class="editor-label">
+            <label>Длина провода:</label>
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.cordLength)
+            @Html.ValidationMessageFor(model => model.cordLength)
+        </div>
+
+        <div class="editor-label">
+            <label>Количество насадок:</label>
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.capCount)
+            @Html.ValidationMessageFor(model => model.capCount)
+        </div>
+
+        <div class="editor-label">
+            <label>Вес:</label>
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.weigth)
+            @Html.ValidationMessageFor(model => model.weigth)
+        </div>
+
+        <div class="editor-label">
+            <label>Штрих-код:</label>
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.barcode)
+            @Html.ValidationMessageFor(model => model.barcode)
+        </div>
+
+        <div class="editor-label">
+            <label>Емкость баттареи (если есть):</label>
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.battery)
+            @Html.ValidationMessageFor(model => model.battery)
+        </div>
+
+        <div class="editor-label">
+            <label>Описание:</label>
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.description)
+            @Html.ValidationMessageFor(model => model.description)
+        </div>
+
+        <div class="editor-label">
+            <label>Цена:</label>
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.price)
+            @Html.ValidationMessageFor(model => model.price)
+        </div>
+
+        <p>
+            <input type="submit" value="Сохранить" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Обратно к списку", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

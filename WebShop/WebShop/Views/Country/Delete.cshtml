@@ -1,0 +1,26 @@
+﻿@model WebShop.Country
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Вы уверены?</h3>
+<fieldset>
+    <legend>Country</legend>
+
+    <div class="display-label">
+        <label>Страна</label>
+         <!--@Html.DisplayNameFor(model => model.name)-->
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.name)
+    </div>
+</fieldset>
+@using (Html.BeginForm()) {
+    <p>
+        <input type="submit" value="Delete" /> |
+        @Html.ActionLink("Назад к списку", "Index")
+    </p>
+}

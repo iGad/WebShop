@@ -1,0 +1,126 @@
+﻿@model IEnumerable<WebShop.VacuumCleaner>
+
+@{
+    ViewBag.Title = "Index";
+}
+@if(Request.IsAuthenticated){
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.model)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Consumers.name)
+        </th>
+        <!--<th>
+            @Html.DisplayNameFor(model => model.type)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.harvestingType)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.powerType)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.consumePower)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.suckPower)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.noise)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.stackType)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.cordLength)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.capCount)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.weigth)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.barcode)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.battery)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.description)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.price)
+        </th>-->
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.model)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Consumers.name)
+        </td>
+        <!--<td>
+            @Html.DisplayFor(modelItem => item.type)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.harvestingType)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.powerType)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.consumePower)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.suckPower)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.noise)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.stackType)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.cordLength)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.capCount)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.weigth)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.barcode)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.battery)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.description)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.price)
+        </td>-->
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.id })
+        </td>
+    </tr>
+}
+
+</table>
+}else{
+<h1>404 Not found</h1>
+}

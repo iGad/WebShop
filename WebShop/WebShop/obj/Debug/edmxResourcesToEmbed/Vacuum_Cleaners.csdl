@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="Vacuum_Cleaners" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" annotation:UseStrongSpatialTypes="false">
+  <EntityContainer Name="Vacuum_CleanersContainer" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Vacuum_cleanerНабор" EntityType="Vacuum_Cleaners.Vacuum_cleaner" />
+  </EntityContainer>
+  <EntityType Name="Vacuum_cleaner">
+    <Key>
+      <PropertyRef Name="Идентификатор" />
+    </Key>
+    <Property Type="Int32" Name="Идентификатор" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="Model" Nullable="false" />
+    <NavigationProperty Name="ConsumerId" />
+    <NavigationProperty Name="TypeId" />
+    <NavigationProperty Name="HarvestingTypeId" />
+    <NavigationProperty Name="PowerTypeId" />
+    <NavigationProperty Name="StackTypeId" />
+    <Property Type="String" Name="Property1" Nullable="false" />
+  </EntityType>
+</Schema>

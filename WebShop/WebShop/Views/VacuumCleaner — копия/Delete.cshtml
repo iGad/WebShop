@@ -1,0 +1,123 @@
+﻿@model WebShop.Models.VacuumCleaner
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<fieldset>
+    <legend>VacuumCleaner</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.model)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.model)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.consumerId)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.consumerId)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.typeId)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.typeId)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.harvestingTypeId)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.harvestingTypeId)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.powerTypeId)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.powerTypeId)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.consumePower)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.consumePower)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.suckPower)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.suckPower)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.noise)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.noise)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.stackTypeId)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.stackTypeId)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.cordLength)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.cordLength)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.capCount)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.capCount)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.weigth)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.weigth)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.barCode)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.barCode)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.battery)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.battery)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.description)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.description)
+    </div>
+</fieldset>
+@using (Html.BeginForm()) {
+    <p>
+        <input type="submit" value="Delete" /> |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+}

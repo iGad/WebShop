@@ -1,19 +1,28 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
+using System.Threading;
 using System.Web;
 using System.Web.Mvc;
+using WebShop.Controllers;
 
 namespace WebShop.Controllers
 {
     public class HomeController : Controller
     {
+        
         public ActionResult Index()
         {
-            ViewBag.Message = "Измените этот шаблон, чтобы быстро приступить к работе над приложением ASP.NET MVC.";
-
+            CultureInfo ci = new CultureInfo("ru-RU");
+            ci.NumberFormat = new CultureInfo("en-US").NumberFormat;
+            Thread.CurrentThread.CurrentCulture = ci;
+            VacuumCleanerController vcc=new VacuumCleanerController();
+            var cg = vcc.SelectTop3VC();
+            ViewBag.TopThree = cg;
             return View();
         }
+
 
         public ActionResult Catalog()
         {

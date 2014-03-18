@@ -36,6 +36,7 @@ namespace WebShop
         public Nullable<int> battery { get; set; }
         public string description { get; set; }
         public byte[] image { get; set; }
+        public DateTime date { get; set; }
         public Nullable<decimal> price { get; set; }
         public virtual Consumer Consumers { get; set; }
         public virtual ICollection<Sale> Sales { get; set; }

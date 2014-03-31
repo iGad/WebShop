@@ -14,20 +14,17 @@ namespace WebShop.Controllers
         
         public ActionResult Index()
         {
-            CultureInfo ci = new CultureInfo("ru-RU");
-            ci.NumberFormat = new CultureInfo("en-US").NumberFormat;
-            Thread.CurrentThread.CurrentCulture = ci;
+            //CultureInfo ci = new CultureInfo("ru-RU");
+            //ci.NumberFormat = new CultureInfo("en-US").NumberFormat;
+            //Thread.CurrentThread.CurrentCulture = ci;
+            Session.Timeout = 20;
             VacuumCleanerController vcc=new VacuumCleanerController();
-            var cg = vcc.SelectTop3VC();
+            var cg = vcc.SelectTop4VC();
             ViewBag.TopThree = cg;
             return View();
         }
 
 
-        public ActionResult Catalog()
-        {
-            return View();
-        }
 
         public ActionResult About()
         {

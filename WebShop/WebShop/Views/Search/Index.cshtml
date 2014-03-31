@@ -1,0 +1,62 @@
+﻿@model WebShop.Finder
+
+@{
+    ViewBag.Title = "Поиск";
+}
+
+<h2>Поиск пылесоса</h2>
+<div class="content-wrapper">
+    @using (Html.BeginForm("Find","Search",FormMethod.Post))
+    {
+        @Html.Hidden("returnUrl", new { ViewBag.returnUrl })
+        <fieldset>
+        <legend>Данные для поиска</legend>
+        <div class="editor-label">
+            <label>Название модели:</label>
+        </div>
+        <div class="editor-field">
+            @Html.TextBoxFor(model=>model.searchString)
+            <!--Html.EditorFor(model => model.searchString)-->
+        </div>
+
+        <div class="editor-label">
+            <label>Производитель:</label>
+        </div>
+        <div class="editor-field">
+            @Html.DropDownListFor(model=>model.consumerName,WebShop.Controllers.VacuumCleanerController.GetAllConsumers()," ")
+        </div>
+
+       <div class="editor-label">
+            <label>Тип пылесоса:</label>
+        </div>
+        <div class="editor-field">
+            @Html.DropDownListFor(model=>model.cleanerType, new SelectList(new List<string>(){"Обычный","Автомобильный","Робот"})," ")
+            
+        </div>
+
+        <div class="editor-label">
+            <label>Тип уборки:</label>
+        </div>
+        <div class="editor-field">
+            @Html.DropDownListFor(model=>model.harvestingType, new SelectList(new List<string>(){"Сухая","Влажная","Сухая и влажная"})," ")
+        </div>
+
+        <div class="editor-label">
+            <label>Тип питания:</label>
+        </div>
+        <div class="editor-field">
+            @Html.DropDownListFor(model=>model.powerType, new SelectList(new List<string>(){"От сети","От прикуривателя","От батареи"})," ")
+        </div>
+
+        <div class="editor-label">
+            <label>Тип контейнера для сбора пыли:</label>
+        </div>
+        <div class="editor-field">
+            @Html.DropDownListFor(model=>model.stackType,new SelectList(new List<string>(){"Мешок","Контейнер"})," ")
+        </div>
+        <p>
+            <input type="submit" value="Найти" />
+        </p>
+    </fieldset>
+    }
+</div>

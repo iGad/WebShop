@@ -6,7 +6,12 @@
         <title>@ViewBag.Title - WebShop</title>
         <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
         <meta name="viewport" content="width=device-width" />
-        @Styles.Render("~/Content/css")
+        <!--if (ViewBag.Title == "Каталог"||ViewBag.Title == "Описание"||ViewBag.Title=="")
+        {-->
+            <link href="/Content/catalog.css" rel="stylesheet"/>
+
+        <!--}-->
+            @Styles.Render("~/Content/css")
         @Scripts.Render("~/bundles/modernizr")
     </head>
     <body>
@@ -22,8 +27,8 @@
                     </section>
                     <nav>
                         <ul id="menu">
-                            <li>@Html.ActionLink("Каталог", "Catalog", "Home")</li>
-                            <li>@Html.ActionLink("Поиск", "About", "Home")</li>
+                            <li>@Html.ActionLink("Каталог", "Index", "VacuumCleaner")</li>
+                            <li><a href="~/Search?returnUrl=@Request.Url.PathAndQuery">Поиск</a><!--Html.ActionLink("Поиск", "Index", "Search", new { returnUrl = Request.Url.PathAndQuery})--></li>
                             <li>@Html.ActionLink("Контакты", "Contact", "Home")</li>
                         </ul>
                     </nav>
@@ -34,8 +39,8 @@
         <div id="body">
             @RenderSection("featured", required: false)
             <div class="left-block">
-                <p id="left-text">Корзина</p><br />
-                <p>Самые популярные:</p>
+                @{Html.RenderAction("Summary", "Cart");}
+                <!--p>Самые популярные:</p-->
             </div>
             <section class="content-wrapper main-content clear-fix">
                 @RenderBody()

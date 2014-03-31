@@ -39,7 +39,19 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="log4net, Version=1.2.10.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\log4net.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="paypal_base, Version=4.3.1.0, Culture=neutral, PublicKeyToken=b37401294aaf5617">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\paypal_base.dll</HintPath>
+    </Reference>
+    <Reference Include="SiteMechanics.PayPalDirect, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\SiteMechanics.PayPalDirect.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Data.Entity" />
@@ -172,6 +184,7 @@
     <Compile Include="Controllers\ConsumerController.cs" />
     <Compile Include="Controllers\CountryController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\SearchController.cs" />
     <Compile Include="Controllers\VacuumCleanerController.cs" />
     <Compile Include="Country.cs">
       <DependentUpon>Data.tt</DependentUpon>
@@ -192,12 +205,15 @@
       <DependentUpon>Data.edmx</DependentUpon>
     </Compile>
     <Compile Include="Filters\InitializeSimpleMembershipAttribute.cs" />
+    <Compile Include="Finder.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountModels.cs" />
+    <Compile Include="Models\BuyerModel.cs" />
     <Compile Include="Models\CartIndexViewModel.cs" />
+    <Compile Include="Models\FinderIndexViewModel.cs" />
     <Compile Include="Models\MarketContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Sale.cs">
@@ -211,6 +227,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Images\404.jpg" />
     <Content Include="App_Data\dbgrid.png">
       <BrowseToURL>dbgrid.png</BrowseToURL>
     </Content>
@@ -290,6 +307,7 @@
     </Content>
     <None Include="Scripts\jquery-1.7.1.intellisense.js" />
     <Content Include="Images\no_image.png" />
+    <Content Include="Images\cart.png" />
     <Content Include="Scripts\jquery-1.7.1.js" />
     <Content Include="Scripts\jquery-1.7.1.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
@@ -364,6 +382,10 @@
     <Content Include="Views\VacuumCleaner\Delete.cshtml" />
     <Content Include="Views\Shared\ProductSummary.cshtml" />
     <Content Include="Views\Cart\Index.cshtml" />
+    <Content Include="Views\Cart\Summary.cshtml" />
+    <Content Include="Views\Search\Find.cshtml" />
+    <Content Include="Views\Search\Index.cshtml" />
+    <Content Include="Views\Shared\404.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

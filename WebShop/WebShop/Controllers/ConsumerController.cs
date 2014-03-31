@@ -40,8 +40,13 @@ namespace WebShop.Controllers
 
         public ActionResult Create()
         {
-            ViewBag.countryId = new SelectList(db.Countries, "id", "name");
-            return View();
+            if (Request.IsAuthenticated)
+            {
+                ViewBag.countryId = new SelectList(db.Countries, "id", "name");
+                return View();
+            }
+            else
+                return View("404");
         }
 
         //
@@ -66,13 +71,18 @@ namespace WebShop.Controllers
 
         public ActionResult Edit(int id = 0)
         {
-            Consumer consumer = db.Consumers.Find(id);
-            if (consumer == null)
+            if (Request.IsAuthenticated)
             {
-                return HttpNotFound();
+                Consumer consumer = db.Consumers.Find(id);
+                if (consumer == null)
+                {
+                    return HttpNotFound();
+                }
+                ViewBag.countryId = new SelectList(db.Countries, "id", "name", consumer.countryId);
+                return View(consumer);
             }
-            ViewBag.countryId = new SelectList(db.Countries, "id", "name", consumer.countryId);
-            return View(consumer);
+            else
+                return View("404");
         }
 
         //
@@ -96,12 +106,17 @@ namespace WebShop.Controllers
 
         public ActionResult Delete(int id = 0)
         {
-            Consumer consumer = db.Consumers.Find(id);
-            if (consumer == null)
+            if (Request.IsAuthenticated)
             {
-                return HttpNotFound();
+                Consumer consumer = db.Consumers.Find(id);
+                if (consumer == null)
+                {
+                    return HttpNotFound();
+                }
+                return View(consumer);
             }
-            return View(consumer);
+            else
+                return View("404");
         }
 
         //

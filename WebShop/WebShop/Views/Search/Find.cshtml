@@ -1,20 +1,20 @@
 ﻿@model IEnumerable<WebShop.VacuumCleaner>
 @{
-    ViewBag.Title = "Каталог";
+    ViewBag.Title = "Результаты поиска";
 }
+<h2>Результаты поиска</h2>
 
-
-<h2>Каталог</h2>
-@if(Request.IsAuthenticated){
-<p>
-    @Html.ActionLink("Добавить", "Create")
-</p>
+@if (Model.Count(c=>true) == 0)
+{
+    <p>Ничего не найдено, измените данные поиска и попробуйте снова</p>
+    <a href="@ViewBag.returnUrl">Назад</a>
 }
-<div class="container">
-@{
-    WebShop.Controllers.VacuumCleanerController vcc=new WebShop.Controllers.VacuumCleanerController();
-    
-}      
+else
+{
+<div class="container">  
+    @{
+    WebShop.Controllers.VacuumCleanerController vcc = new WebShop.Controllers.VacuumCleanerController();
+    }
     @foreach (var item in Model) {
     <div class="galleryItem">
         <a href="@Url.Action("Details","VacuumCleaner",new { item.id })"> 
@@ -47,3 +47,5 @@
     }
 
 </div>
+    @Html.ActionLink("Назад","Index","Search")
+}

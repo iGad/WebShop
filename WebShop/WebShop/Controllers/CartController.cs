@@ -20,6 +20,12 @@ namespace WebShop.Controllers
             });
         }
 
+        public CartController()
+        {
+            VacuumCleanerController vcc = new VacuumCleanerController();
+            repository = vcc.SelectAll();
+        }
+
         public CartController(IQueryable<VacuumCleaner> repo)
         {            
             repository = repo;
@@ -57,6 +63,11 @@ namespace WebShop.Controllers
                 Session["Cart"] = cart;
             }
             return cart;
+        }
+        public PartialViewResult Summary(Cart cart)
+        {
+            Cart c = GetCart();
+            return PartialView(c);
         }
     }
 }

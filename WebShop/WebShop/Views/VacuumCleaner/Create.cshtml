@@ -1,19 +1,19 @@
 ﻿@model WebShop.VacuumCleaner
 
 @{
-    ViewBag.Title = "Create";
+    ViewBag.Title = "Добавление";
 }
+ 
+<h2>Добавление</h2>
 
-<h2>Create</h2>
-
-@using (Html.BeginForm()) {
+@using (Html.BeginForm("Create", "VacuumCleaner", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
     @Html.ValidationSummary(true)
 
     <fieldset>
-        <legend>VacuumCleaner</legend>
-
+        <legend>Инфо о пылесосе</legend>
         <div class="editor-label">
-            @Html.LabelFor(model => model.model)
+            <label>Название модели:</label>
         </div>
         <div class="editor-field">
             @Html.EditorFor(model => model.model)
@@ -21,39 +21,48 @@
         </div>
 
         <div class="editor-label">
-            @Html.LabelFor(model => model.consumerId, "Consumers")
+            <label>Производитель:</label>
         </div>
         <div class="editor-field">
-            @Html.DropDownList("consumerId", String.Empty)
+            @Html.DropDownList("consumerId")
             @Html.ValidationMessageFor(model => model.consumerId)
         </div>
 
-        <div class="editor-label">
-            @Html.LabelFor(model => model.type)
+        <div class="editor-label">Изображение:</div>
+          <div class="editor-field">
+              <!--input type="file" name="image" /-->
+                <input type="file" name="uploadimage" /><br />
+          </div>
+
+       <div class="editor-label">
+            <label>Тип пылесоса:</label>
         </div>
         <div class="editor-field">
-            @Html.EditorFor(model => model.type)
+            <!--Html.EditorFor(model => model.type)-->
+            @Html.DropDownListFor(model=>model.type, new SelectList(new List<string>(){"Обычный","Автомобильный","Робот"}))
             @Html.ValidationMessageFor(model => model.type)
         </div>
 
         <div class="editor-label">
-            @Html.LabelFor(model => model.harvestingType)
+            <label>Тип уборки:</label>
         </div>
         <div class="editor-field">
-            @Html.EditorFor(model => model.harvestingType)
+            <!--Html.EditorFor(model => model.harvestingType)-->
+            @Html.DropDownListFor(model=>model.harvestingType, new SelectList(new List<string>(){"Сухая","Влажная","Сухая и влажная"}))
             @Html.ValidationMessageFor(model => model.harvestingType)
         </div>
 
         <div class="editor-label">
-            @Html.LabelFor(model => model.powerType)
+            <label>Тип питания:</label>
         </div>
         <div class="editor-field">
-            @Html.EditorFor(model => model.powerType)
+            <!--Html.EditorFor(model => model.powerType)-->
+            @Html.DropDownListFor(model=>model.powerType, new SelectList(new List<string>(){"От сети","От прикуривателя","От батареи"}))
             @Html.ValidationMessageFor(model => model.powerType)
         </div>
 
         <div class="editor-label">
-            @Html.LabelFor(model => model.consumePower)
+            <label>Потребляемая мощность:</label>
         </div>
         <div class="editor-field">
             @Html.EditorFor(model => model.consumePower)
@@ -61,7 +70,7 @@
         </div>
 
         <div class="editor-label">
-            @Html.LabelFor(model => model.suckPower)
+            <label>Мощность всасывания:</label>
         </div>
         <div class="editor-field">
             @Html.EditorFor(model => model.suckPower)
@@ -69,7 +78,7 @@
         </div>
 
         <div class="editor-label">
-            @Html.LabelFor(model => model.noise)
+            <label>Шум:</label>
         </div>
         <div class="editor-field">
             @Html.EditorFor(model => model.noise)
@@ -77,15 +86,17 @@
         </div>
 
         <div class="editor-label">
-            @Html.LabelFor(model => model.stackType)
+            <label>Тип контейнера для сбора пыли:</label>
         </div>
         <div class="editor-field">
-            @Html.EditorFor(model => model.stackType)
+            <!--Html.EditorFor(model => model.stackType)-->
+            @Html.DropDownListFor(model=>model.stackType,new SelectList(new List<string>(){"Мешок","Контейнер"}))
+            <!--Html.DropDownList("typeList", new SelectList(new List<string>(){"Мешок","Контейнер"}))-->
             @Html.ValidationMessageFor(model => model.stackType)
         </div>
 
         <div class="editor-label">
-            @Html.LabelFor(model => model.cordLength)
+            <label>Длина провода:</label>
         </div>
         <div class="editor-field">
             @Html.EditorFor(model => model.cordLength)
@@ -93,7 +104,7 @@
         </div>
 
         <div class="editor-label">
-            @Html.LabelFor(model => model.capCount)
+            <label>Количество насадок:</label>
         </div>
         <div class="editor-field">
             @Html.EditorFor(model => model.capCount)
@@ -101,7 +112,7 @@
         </div>
 
         <div class="editor-label">
-            @Html.LabelFor(model => model.weigth)
+            <label>Вес:</label>
         </div>
         <div class="editor-field">
             @Html.EditorFor(model => model.weigth)
@@ -109,7 +120,7 @@
         </div>
 
         <div class="editor-label">
-            @Html.LabelFor(model => model.barcode)
+            <label>Штрих-код:</label>
         </div>
         <div class="editor-field">
             @Html.EditorFor(model => model.barcode)
@@ -117,7 +128,7 @@
         </div>
 
         <div class="editor-label">
-            @Html.LabelFor(model => model.battery)
+            <label>Емкость батареи (если есть):</label>
         </div>
         <div class="editor-field">
             @Html.EditorFor(model => model.battery)
@@ -125,7 +136,7 @@
         </div>
 
         <div class="editor-label">
-            @Html.LabelFor(model => model.description)
+            <label>Описание:</label>
         </div>
         <div class="editor-field">
             @Html.EditorFor(model => model.description)
@@ -133,7 +144,7 @@
         </div>
 
         <div class="editor-label">
-            @Html.LabelFor(model => model.price)
+            <label>Цена:</label>
         </div>
         <div class="editor-field">
             @Html.EditorFor(model => model.price)
@@ -141,13 +152,13 @@
         </div>
 
         <p>
-            <input type="submit" value="Create" />
+            <input type="submit" value="Создать" />
         </p>
     </fieldset>
 }
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Назад", "Index")
 </div>
 
 @section Scripts {

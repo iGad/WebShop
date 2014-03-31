@@ -63,8 +63,13 @@ namespace WebShop.Controllers
         [AllowAnonymous]
         public ActionResult Register(string returnUrl)
         {
-            ViewBag.ReturnUrl = returnUrl;
-            return View();
+            if (Request.IsAuthenticated)
+            {
+                ViewBag.ReturnUrl = returnUrl;
+                return View();
+            }
+            else
+                return View("404");
         }
 
         //

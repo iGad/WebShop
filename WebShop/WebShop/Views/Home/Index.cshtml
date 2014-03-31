@@ -1,9 +1,5 @@
 ﻿@{
     ViewBag.Title = "Добро пожаловать";
-    if (ViewBag.PrevPage == null){
-        ViewBag.PrevPage = Url;}else{
-    ViewBag.PrevPage = ViewBag.CurrentPage;}
-    ViewBag.CurrentPage = Url;
     ViewBag.Message = "Приветствуем Вас в нашем интернет магазине WebShop. Здесь вы найдете самые современные пылесосы от самых крупных производителей в мире.";
 }
 @section featured {
@@ -13,35 +9,62 @@
                 <h1>@ViewBag.Title!</h1><br />
                 <h2>@ViewBag.Message</h2>
             </hgroup>
-           <!-- <p>
-                Для получения дополнительных сведений о ASP.NET MVC посетите веб-сайт 
-                <a href="http://asp.net/mvc" title="ASP.NET MVC Website">http://asp.net/mvc</a>.
-                На странице представлены <mark>видеоматериалы, учебники и образцы кода</mark> , позволяющие лучшим образом использовать ASP.NET MVC.
-                По всем вопросам об ASP.NET MVC обращайтесь на
-                <a href="http://forums.asp.net/1146.aspx/1?MVC" title="ASP.NET MVC Forum">наши форумы</a>.
-            </p>-->
         </div>
     </section>
 }
 <h3>Новые поступления этой недели:</h3>
-<ol class="round">
-    <li class="one">
-        <h5>бла-бла-бла</h5>
-        <br />
-        <br />
-        
-    </li>
 
-    <li class="two">
-        <h5>бла-блаб-блаб-бал</h5>
-        <br />
-        <br />
-    </li>
-
-    <li class="three">
-        <h5>блааааа</h5>
-        <br />
-        <br />
+ @foreach (WebShop.VacuumCleaner item in ViewBag.TopThree) {
+    <div class="galleryItem">
+        <a href="@Url.Action("Details","VacuumCleaner",new { item.id })"> 
+            <h3>@item.Consumers.name @item.model</h3> 
+            <div class="container-img">          
+             @if (item.image == null) {
+                <img src="~/Images/no_image.png"/>
+            }
+            else {
+              <img src="@Url.Action("GetImage", "VacuumCleaner", new { item.id })" />
+            }
+            <div class="price-text">
+                <h6 class="price-header">@item.price</h6>
+            </div>
+            </div>
+        </a>        
+        @{
+            if(item.description.Length > 220)
+            {
+                <p>@item.description.Substring(0,219)...<a href="@Url.Action("Details","VacuumCleaner",new { item.id })"> Подробнее...</a></p>
+                
+            }
+            else
+            {
+                <p>@item.description <a href="@Url.Action("Details","VacuumCleaner",new { item.id })"> Подробнее...</a></p>
+            }
+        }
         
-    </li>
-</ol>
+    </div>
+    }
+
+<!--table>
+    <tr>
+         @foreach(WebShop.VacuumCleaner vc in ViewBag.TopThree)
+        {
+            <th>@vc.model</th>
+        }
+    </tr>
+    <tr>
+    foreach(WebShop.VacuumCleaner vc in ViewBag.TopThree)
+    {
+        <td>
+        if (vc.image == null)
+        {
+                <img src="~/Images/no_image.png" width="200" height="200" />
+            }
+            else {
+              <img width="200" height="200" src="Url.Action("GetImage", "VacuumCleaner", new { vc.id })" />
+            }
+            </td>
+    }
+    </table-->
+        
+    

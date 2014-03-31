@@ -39,7 +39,12 @@ namespace WebShop.Controllers
 
         public ActionResult Create()
         {
-            return View();
+            if (Request.IsAuthenticated)
+            {
+                return View();
+            }
+            else
+                return View("404");
         }
 
         //
@@ -63,12 +68,17 @@ namespace WebShop.Controllers
 
         public ActionResult Edit(int id = 0)
         {
-            Country country = db.Countries.Find(id);
-            if (country == null)
+            if (Request.IsAuthenticated)
             {
-                return HttpNotFound();
+                Country country = db.Countries.Find(id);
+                if (country == null)
+                {
+                    return HttpNotFound();
+                }
+                return View(country);
             }
-            return View(country);
+            else
+                return View("404");
         }
 
         //
@@ -91,12 +101,17 @@ namespace WebShop.Controllers
 
         public ActionResult Delete(int id = 0)
         {
-            Country country = db.Countries.Find(id);
-            if (country == null)
+            if (Request.IsAuthenticated)
             {
-                return HttpNotFound();
+                Country country = db.Countries.Find(id);
+                if (country == null)
+                {
+                    return HttpNotFound();
+                }
+                return View(country);
             }
-            return View(country);
+            else
+                return View("404");
         }
 
         //

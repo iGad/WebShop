@@ -23,13 +23,19 @@ namespace WebShop.Controllers
             return View(vacuumcleaners.ToList());
         }
 
-        public List<VacuumCleaner> SelectTop3VC()
+        public List<VacuumCleaner> SelectTop4VC()
         {
             var q = db.VacuumCleaners
                 .OrderByDescending(c => c.date)
-                .Take(3)
+                .Take(4)
                 .Select(c=>c);//from vc in db.VacuumCleaners select vc;
             return q.ToList();
+        }
+
+        public static SelectList GetAllConsumers()
+        {
+            MarketContext mc=new MarketContext();
+            return new SelectList(mc.Consumers.Select(c => c.name).ToList());
         }
 
         public IQueryable<VacuumCleaner> SelectAll()
@@ -60,8 +66,13 @@ namespace WebShop.Controllers
 
         public ActionResult Create()
         {
-            ViewBag.consumerId = new SelectList(db.Consumers, "id", "name");
-            return View();
+            if (Request.IsAuthenticated)
+            {
+                ViewBag.consumerId = new SelectList(db.Consumers, "id", "name");
+                return View();
+            }
+            else
+                return View("404");
         }
 
         //
@@ -93,13 +104,18 @@ namespace WebShop.Controllers
         [HttpGet]
         public ActionResult Edit(int id = 0)
         {
-            VacuumCleaner vacuumcleaner = db.VacuumCleaners.Find(id);
-            if (vacuumcleaner == null)
+            if (Request.IsAuthenticated)
             {
-                return HttpNotFound();
+                VacuumCleaner vacuumcleaner = db.VacuumCleaners.Find(id);
+                if (vacuumcleaner == null)
+                {
+                    return HttpNotFound();
+                }
+                ViewBag.consumerId = new SelectList(db.Consumers, "id", "name", vacuumcleaner.consumerId);
+                return View(vacuumcleaner);
             }
-            ViewBag.consumerId = new SelectList(db.Consumers, "id", "name", vacuumcleaner.consumerId);
-            return View(vacuumcleaner);
+            else
+                return View("404");
         }
 
         //
@@ -136,7 +152,10 @@ namespace WebShop.Controllers
             VacuumCleaner vc = db.VacuumCleaners.FirstOrDefault(p => p.id == id);
             if (vc != null)
             {
-                return File(vc.image,"image/png");
+                if (vc.image != null)
+                    return File(vc.image, "image/png");
+                else
+                    return null;
             }
             else
             {
@@ -148,12 +167,17 @@ namespace WebShop.Controllers
 
         public ActionResult Delete(int id = 0)
         {
-            VacuumCleaner vacuumcleaner = db.VacuumCleaners.Find(id);
-            if (vacuumcleaner == null)
+            if (Request.IsAuthenticated)
             {
-                return HttpNotFound();
+                VacuumCleaner vacuumcleaner = db.VacuumCleaners.Find(id);
+                if (vacuumcleaner == null)
+                {
+                    return HttpNotFound();
+                }
+                return View(vacuumcleaner);
             }
-            return View(vacuumcleaner);
+            else
+                return View("404");
         }
 
         //

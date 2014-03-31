@@ -8,9 +8,11 @@
 @if(Request.IsAuthenticated){
 <h2>Просмотр всех производителей</h2>
 
+     @if(Request.IsAuthenticated){
 <p>
     @Html.ActionLink("Добавить", "Create")
 </p>
+     }
 <table>
     <tr>
         <th>
@@ -33,9 +35,11 @@
             @Html.DisplayFor(modelItem => item.Countries.name)
         </td>
         <td>
-            @Html.ActionLink("Редактировать", "Edit", new { id=item.id }) |
+             @if(Request.IsAuthenticated){
+            @Html.ActionLink("Редактировать", "Edit", new { id=item.id }) 
             <!--@Html.ActionLink("Details", "Details", new { id=item.id }) |-->
             @Html.ActionLink("Удалить", "Delete", new { id=item.id })
+             }
         </td>
     </tr>
 }

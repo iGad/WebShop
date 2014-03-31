@@ -1,0 +1,13 @@
+﻿@model WebShop.VacuumCleaner
+@{
+    WebShop.Controllers.VacuumCleanerController vcc = new WebShop.Controllers.VacuumCleanerController();
+    }
+<div class="right-block"> 
+    <p>Цена: @Model.price руб.</p>
+    @using (Html.BeginForm("AddToCart", "Cart")) {
+    @Html.Hidden("productId",Model.id)
+    @Html.Hidden("returnUrl", Request.Url.PathAndQuery)
+    <input type="submit" class="green_btn" value="+ Добавить в корзину" />
+  }
+    <p><label><b>Описание:</b></label>@Model.description</p>
+</div>

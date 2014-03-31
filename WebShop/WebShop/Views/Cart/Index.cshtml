@@ -1,0 +1,39 @@
+﻿@model WebShop.Models.CartIndexViewModel
+
+@{
+  ViewBag.Title = "Ваша корзина";
+}
+
+<h2>Ваша корзина</h2>
+
+<table class="table-bucket">
+  <thead>
+    <tr>
+      <th>Количество</th>
+      <th>Пылесос</th>
+      <th>Цена</th>
+      <th>Сумма</th>
+    </tr>
+  </thead>
+  <tbody>
+    @foreach (var line in Model.Cart.Lines) {
+      <tr>
+        <td>@line.Quantity</td>
+        <td>@line.VacuumCleaner.model</td>
+        <td>@line.VacuumCleaner.price</td>
+        <td>@((line.Quantity * line.VacuumCleaner.price))</td>
+      </tr>
+    }
+  </tbody>
+  <tfoot>
+    <tr>
+      <td colspan="3">Итого:</td>
+      <td>
+        @Model.Cart.ComputeTotalValue() руб.
+      </td>
+    </tr>
+  </tfoot>
+</table>
+<p class="actionButtons">
+  <a href="@Model.ReturnUrl">Продолжить делать покупки</a>
+</p>
